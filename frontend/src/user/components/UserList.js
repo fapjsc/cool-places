@@ -1,11 +1,15 @@
 import classes from './UserList.module.scss';
 import UserItem from './UserItem';
 
+import Card from '../../shared/components/ui/Card';
+
 const UserList = ({ userList }) => {
   if (userList.length === 0) {
     return (
       <div className="center">
-        <h2>No users found.</h2>
+        <Card>
+          <h2>No users found.</h2>
+        </Card>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import UserList from '../components/UserList';
 
 const DUMMY_DATA = [
   {
-    id: 'ui',
+    id: 'u1',
     name: 'Mike',
     image: 'https://picsum.photos/200/300/?blur',
     places: 3,
