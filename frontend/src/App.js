@@ -7,6 +7,7 @@ import MainNavigation from './shared/components/navigation/MainNavigation';
 import UserScreen from './user/pages/UserScreen';
 import NewPlaceScreen from './places/pages/NewPlaceScreen';
 import UserPlacesScreen from './places/pages/UserPlacesScreen';
+import UpdatePlaceScreen from './places/pages/UpdatePlaceScreen';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={UserScreen} exact />
           <Route path="/place/new" component={NewPlaceScreen} exact />
+          <Route path="/places/:pid" component={UpdatePlaceScreen} />
           <Route path="/:userId/places" component={UserPlacesScreen} exact />
           <Redirect to="/" />
         </Switch>

@@ -23,9 +23,13 @@ const inputReducer = (state, action) => {
   }
 };
 
-const initialInputState = { value: '', isValid: false, isTouch: false };
-
 const Input = props => {
+  const initialInputState = {
+    value: props.value || '',
+    isValid: props.valid || false,
+    isTouch: false,
+  };
+
   const [inputState, dispatch] = useReducer(inputReducer, initialInputState);
 
   const onChangeHandler = e => {

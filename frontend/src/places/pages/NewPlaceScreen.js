@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
 
-import classes from './NewPlaceScreen.module.scss';
+import classes from './PlaceForm.module.scss';
 
 import Input from '../../shared/components/formElement/Input';
 import Button from '../../shared/components/formElement/Button';
@@ -33,7 +33,6 @@ const formReducer = (state, action) => {
           formIsValid = formIsValid && state.inputs[inputId].isValid;
         }
       }
-
       return {
         ...state,
         inputs: {
@@ -42,6 +41,7 @@ const formReducer = (state, action) => {
         },
         isValid: formIsValid,
       };
+
     default:
       return state;
   }
