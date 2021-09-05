@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import { validate } from '../../util/validators';
 
 import classes from './Input.module.scss';
@@ -40,6 +40,13 @@ const Input = props => {
     dispatch({ type: 'TOUCH', isTouch: true });
   };
 
+  const { id, onInput } = props;
+  const { value, isValid } = inputState;
+
+  useEffect(() => {
+    onInput(id, value, isValid);
+  }, [id, onInput, value, isValid]);
+
   const element =
     props.element === 'input' ? (
       <input
@@ -49,6 +56,7 @@ const Input = props => {
         onChange={onChangeHandler}
         value={inputState.value}
         onBlur={touchHandler}
+        autoComplete="off"
       />
     ) : (
       <textarea
@@ -57,6 +65,7 @@ const Input = props => {
         onChange={onChangeHandler}
         value={inputState.value}
         onBlur={touchHandler}
+        autoComplete="off"
       />
     );
 
