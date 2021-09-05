@@ -17,7 +17,7 @@ const UserList = ({ userList }) => {
   return (
     <ul className={classes.userList}>
       {userList.map(user => (
-        <UserItem key={user.id} {...user} />
+        <UserItem key={user.id} id={user.id} {...user} />
       ))}
     </ul>
   );

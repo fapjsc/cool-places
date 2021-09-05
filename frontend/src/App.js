@@ -6,6 +6,7 @@ import MainNavigation from './shared/components/navigation/MainNavigation';
 // Pages
 import UserScreen from './user/pages/UserScreen';
 import NewPlaceScreen from './places/pages/NewPlaceScreen';
+import UserPlacesScreen from './places/pages/UserPlacesScreen';
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
         <Switch>
           <Route path="/" component={UserScreen} exact />
           <Route path="/place/new" component={NewPlaceScreen} exact />
-          {/* <Redirect to="/" /> */}
+          <Route path="/:userId/places" component={UserPlacesScreen} exact />
+          <Redirect to="/" />
         </Switch>
       </main>
     </Router>
