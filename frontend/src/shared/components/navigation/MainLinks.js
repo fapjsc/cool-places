@@ -18,8 +18,8 @@ const MainLinks = () => {
       </li>
 
       <li>
-        <NavLink to="/places/new" activeClassName={classes.active}>
-          ADD USERS
+        <NavLink to="/place/new" activeClassName={classes.active}>
+          ADD PLACE
         </NavLink>
       </li>
 
