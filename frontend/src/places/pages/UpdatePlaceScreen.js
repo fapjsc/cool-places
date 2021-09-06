@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Input from '../../shared/components/formElement/Input';
 import Button from '../../shared/components/formElement/Button';
+import Card from '../../shared/components/ui/Card';
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 
@@ -26,7 +27,7 @@ const DUMMY_PLACES = [
   },
   {
     id: 'p2',
-    title: 'Empire State Building',
+    title: 'Empire.',
     description: 'One of the most famous sky scrapers in the world',
     imageUrl:
       'https://marvel-b1-cdn.bc0a.com/f00000000179470/www.esbnyc.com/sites/default/files/styles/on_single_feature/public/2019-10/home_banner-min.jpg?itok=OVtUHvyB',
@@ -59,13 +60,21 @@ const UpdatePlaceScreen = () => {
   };
 
   useEffect(() => {
-    setFormData(
-      {
-        title: { value: identifiedPlace.title, isValid: true },
-        description: { value: identifiedPlace.description, isValid: true },
-      },
-      true
-    );
+    if (identifiedPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
+        },
+        true
+      );
+    }
 
     setIsLoading(false);
   }, [setFormData, identifiedPlace]);
@@ -73,7 +82,9 @@ const UpdatePlaceScreen = () => {
   if (isLoading) {
     return (
       <div className="center">
-        <h2>Loading...</h2>
+        <Card>
+          <h2>Loading...</h2>
+        </Card>
       </div>
     );
   }
@@ -81,7 +92,9 @@ const UpdatePlaceScreen = () => {
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find Place!</h2>
+        <Card>
+          <h2>Could not find Place!</h2>
+        </Card>
       </div>
     );
   }

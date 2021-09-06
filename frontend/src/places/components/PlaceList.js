@@ -1,6 +1,7 @@
 import classes from './PlaceList.module.scss';
 import Card from '../../shared/components/ui/Card';
 import PlaceItem from '../components/PlaceItem';
+import Button from '../../shared/components/formElement/Button';
 
 const PlaceList = ({ placeList }) => {
   if (placeList.length === 0) {
@@ -8,7 +9,7 @@ const PlaceList = ({ placeList }) => {
       <div className={`${classes['place-list']} center`}>
         <Card>
           <h2>No Places Found.</h2>
-          <button>Share Place</button>
+          <Button to="/place/new">Share Place</Button>
         </Card>
       </div>
     );

@@ -7,9 +7,18 @@ import Map from '../../shared/components/ui/Map';
 
 const PlaceItem = props => {
   const [showMap, setShowMap] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
   const closeMapHandler = () => setShowMap(false);
+
+  const showDeleteWarnHandler = () => setShowConfirmModal(true);
+  const cancelDeleteHandler = () => setShowConfirmModal(false);
+
+  const confirmDeleteHandler = () => {
+    setShowConfirmModal(false);
+    console.log('delete...');
+  };
 
   return (
     <Fragment>
@@ -24,6 +33,28 @@ const PlaceItem = props => {
         <div className={classes['map-container']}>
           <Map center={props.location} zoom={16} />
         </div>
+      </Modal>
+
+      <Modal
+        show={showConfirmModal}
+        header="Are you sure?"
+        footerClass={classes['place-item__modal-actions']}
+        onCancel={cancelDeleteHandler}
+        footer={
+          <Fragment>
+            <Button inverse onClick={cancelDeleteHandler}>
+              Cancel
+            </Button>
+            <Button danger onClick={confirmDeleteHandler}>
+              Delete
+            </Button>
+          </Fragment>
+        }
+      >
+        <p>
+          Do you want to proceed and delete this place? please note that it can't be undone there
+          after
+        </p>
       </Modal>
       <li className={classes['place-item']}>
         <Card className={classes['place-item__content']}>
@@ -42,7 +73,9 @@ const PlaceItem = props => {
               VIEW ON MAP
             </Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
-            <Button danger>DELETE</Button>
+            <Button danger onClick={showDeleteWarnHandler}>
+              DELETE
+            </Button>
           </div>
         </Card>
       </li>
