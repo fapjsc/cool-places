@@ -1,11 +1,22 @@
-import classes from './PlaceItem.module.scss';
+import { useContext, useState, Fragment } from 'react';
+
+// Context
+import { AuthContext } from '../../context/auth-context';
+
+// Components
 import Card from '../../shared/components/ui/Card';
 import Button from '../../shared/components/formElement/Button';
-import { useState, Fragment } from 'react';
 import Modal from '../../shared/components/ui/Modal';
 import Map from '../../shared/components/ui/Map';
 
+// Style
+import classes from './PlaceItem.module.scss';
+
 const PlaceItem = props => {
+  // Auth Context
+  const authCtx = useContext(AuthContext);
+
+  // Init State
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -72,10 +83,16 @@ const PlaceItem = props => {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            <Button to={`/places/${props.id}`}>EDIT</Button>
-            <Button danger onClick={showDeleteWarnHandler}>
-              DELETE
-            </Button>
+
+            {authCtx.isLoggedIn && (
+              <>
+                <Button to={`/places/${props.id}`}>EDIT</Button>
+
+                <Button danger onClick={showDeleteWarnHandler}>
+                  DELETE
+                </Button>
+              </>
+            )}
           </div>
         </Card>
       </li>
